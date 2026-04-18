@@ -1,0 +1,53 @@
+spring:
+  config:
+    import: optional:file:.env.example[.properties]
+  application:
+    name: ${SPRING_APPLICATION_NAME:wallet-service}
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE}
+      minimum-idle: ${DB_POOL_MIN_IDLE}
+      connection-timeout: ${DB_CONNECTION_TIMEOUT}
+      idle-timeout: ${DB_IDLE_TIMEOUT}
+      max-lifetime: ${DB_MAX_LIFETIME}
+      connection-init-sql: ${DB_CONNECTION_INIT_SQL}
+  jpa:
+    open-in-view: ${JPA_OPEN_IN_VIEW:false}
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:validate}
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: ${HIBERNATE_BATCH_SIZE}
+        order_inserts: ${HIBERNATE_ORDER_INSERTS:true}
+        order_updates: ${HIBERNATE_ORDER_UPDATES:true}
+    show-sql: ${JPA_SHOW_SQL:false}
+  liquibase:
+    change-log: ${LIQUIBASE_CHANGE_LOG:classpath:db/changelog/v0.0.1/changelog-master.xml}
+
+server:
+  port: ${SERVER_PORT}
+
+logging:
+  level:
+    ru.example.walletservice: ${LOG_LEVEL_WALLET_SERVICE:INFO}
+    org.springframework.web: ${LOG_LEVEL_SPRING_WEB:WARN}
+    org.hibernate.SQL: ${LOG_LEVEL_HIBERNATE_SQL:WARN}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+api-base-path: /api/${API_VERSION:v1}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="initial-wallets" author="fanat1kq">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="wallets"/>
+        </preConditions>
+
+        <insert tableName="wallets">
+            <column name="id" value="0dc582fd-fd9e-4767-808b-281462a096fa"/>
+            <column name="balance" value="0.00"/>
+        </insert>
+        <insert tableName="wallets">
+            <column name="id" value="d0f80018-63d8-49e3-abc9-07ffed86ea27"/>
+            <column name="balance" value="0.00"/>
+        </insert>
+        <insert tableName="wallets">
+            <column name="id" value="ba3a7ff6-45d9-47e6-979c-b1702f0801a2"/>
+            <column name="balance" value="0.00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

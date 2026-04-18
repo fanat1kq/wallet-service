@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db_pg_15:
+    image: postgres:15
+    restart: always
+    env_file: .env.example
+    environment:
+      - POSTGRES_DB=wallet_db
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  wallet_app:
+    build: .
+    restart: always
+    env_file: .env.example
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db_pg_15:5432/wallet_db
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db_pg_15
+
+volumes:
+  db_data:
