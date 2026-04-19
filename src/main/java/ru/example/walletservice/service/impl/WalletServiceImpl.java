@@ -10,10 +10,6 @@ import ru.example.walletservice.service.WalletService;
 
 import java.util.UUID;
 
-/**
- * Реализация {@link WalletService} для веб-слоя: только склеивает query- и command-сценарии.
- * Детали — в {@link WalletQueryService} и {@link WalletCommandService}.
- */
 @Service
 @RequiredArgsConstructor
 public class WalletServiceImpl implements WalletService {

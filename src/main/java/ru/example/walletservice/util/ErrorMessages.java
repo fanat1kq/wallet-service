@@ -12,6 +12,9 @@ public final class ErrorMessages {
 
     public static final String MESSAGE_WALLET_NOT_FOUND = ("Кошелёк с ID %s не найден");
 
+    public static final String MESSAGE_IDEMPOTENCY_CONFLICT =
+        ("Idempotency-Key уже использован с другим payload");
+
     private ErrorMessages() {
     }
 }
